@@ -1,0 +1,13 @@
+{
+  "success_example": {
+    "id": "user_1234",
+    "email": "new_user@example.com",
+    "verification_sent": true
+  },
+  "duplicate_example": {
+    "error": {
+      "code": "EMAIL_EXISTS",
+      "message": "An account already exists for this email."
+    }
+  }
+}

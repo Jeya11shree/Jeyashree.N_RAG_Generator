@@ -1,0 +1,32 @@
+# Ignore runtime / artifacts
+db/
+logs/
+*.pyc
+__pycache__/
+.env
+.env.local
+.vscode/
+
+# Virtual environments
+ai_env/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment variables
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

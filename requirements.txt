@@ -1,0 +1,18 @@
+# Minimal requirements (update as needed)
+pytest
+scikit-learn
+pdfminer.six
+Pillow
+pytesseract
+chromadb
+faiss-cpu
+openai
+python-docx
+docx2txt
+joblib
+chromadb
+#faiss-cpu
+#openai
+
+# Add any additional dependencies below
+transformers

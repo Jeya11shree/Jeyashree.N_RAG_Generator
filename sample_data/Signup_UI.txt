@@ -1,0 +1,27 @@
+Signup UI (transcript)
+
+Page: Signup
+
+Fields:
+- Email input (id: email)
+- Password input (id: password)
+- Confirm password input (id: confirm_password) [optional]
+- Display name (id: name) [optional]
+- Create Account button (id: create_account)
+
+Validation rules shown inline:
+- Email: must be valid email format
+- Password: minimum 8 chars, uppercase, lowercase, digit, symbol
+- Confirm password: must match password (if present)
+
+Layout notes:
+- Desktop: email + password stacked center-left, CTA on bottom
+- Mobile: single-column form with large CTA
+
+Error states:
+- Duplicate email: inline error near email field "Email already exists"
+- Weak password: inline helper showing missing criteria
+
+Accessible labels: all inputs should have labels and aria-describedby for error messages.
+
+This transcript should be used to ground UI-related use cases and for OCR fallback.
