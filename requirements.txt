@@ -16,3 +16,7 @@ chromadb
 
 # Add any additional dependencies below
 transformers
+streamlit
+pytesseract
+pillow
+pymupdf
