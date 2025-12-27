@@ -20,3 +20,9 @@ streamlit
 pytesseract
 pillow
 pymupdf
+# Python dependencies for OCR
+pytesseract>=0.3.10
+Pillow>=9.0.0
+pdf2image>=1.16.0
+opencv-python-headless>=4.5.5.64  # optional but recommended for preprocessing
+numpy>=1.21.0

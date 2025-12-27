@@ -14,6 +14,15 @@ import streamlit as st
 # Import project modules (existing)
 from src import ingest, retrieval, generate, guardrails, utils
 
+# Optional JSON validation
+try:
+    from jsonschema import validate, ValidationError
+    _has_jsonschema = True
+except Exception:
+    validate = None
+    ValidationError = Exception
+    _has_jsonschema = False
+
 # Constants
 UPLOAD_DIR = Path("sample_data_uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
@@ -113,6 +122,24 @@ def clear_uploads(target_dir: Path):
         shutil.rmtree(target_dir)
     target_dir.mkdir()
 
+# A minimal JSON Schema for the produced output (validate presence/shape)
+OUTPUT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "query": {"type": "string"},
+        "avg_evidence_score": {"type": "number"},
+        "use_cases": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["title", "goal", "preconditions", "test_data", "steps", "expected_results", "negative_cases", "boundary_cases"],
+            },
+        },
+        "evidence": {"type": "array"},
+    },
+    "required": ["query", "use_cases"],
+}
+
 # Layout
 col_left, col_right = st.columns([1, 2], gap="large")
 
@@ -163,8 +190,16 @@ with col_right:
                 _vec, _mat, _chunks = retrieval.run_build_index()
                 retrieved = retrieval.retrieve(q, top_k=top_k)
 
+            # Sanitize + dedupe retrieved chunks before generation (protects vs doc-embedded instructions)
+            retrieved = [
+                {**r, "text": guardrails.sanitize(r.get("text", "")), "source": r.get("source", "unknown")}
+                for r in retrieved
+            ]
+            retrieved = guardrails.dedupe_chunks(retrieved)
+
             if not retrieved:
                 st.warning("No evidence was retrieved. Try ingesting more documents.")
+
             # Debug view: cards with nice styling
             if debug and retrieved:
                 st.markdown("### Retrieved evidence (top_k)", unsafe_allow_html=True)
@@ -187,6 +222,20 @@ with col_right:
             else:
                 with st.spinner("Generating use-cases..."):
                     out = generate.generate_use_cases(q, retrieved, top_k=top_k, evidence_threshold=evidence_threshold)
+
+                # Validate JSON shape (optional, requires jsonschema)
+                if _has_jsonschema:
+                    try:
+                        validate(instance=out, schema=OUTPUT_SCHEMA)
+                        st.success("Generated JSON validated against schema.")
+                    except ValidationError as e:
+                        st.error(f"Generated JSON failed schema validation: {e}")
+                        st.write("Raw output (helpful for debugging):")
+                        st.code(json.dumps(out, indent=2), language="json")
+                        # still show output below so user can copy
+                else:
+                    st.info("jsonschema not installed; skipping JSON schema validation. Consider `pip install jsonschema`.")
+
                 st.markdown("### Generated JSON output")
                 st.json(out)
 
