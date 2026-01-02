@@ -1,3 +1,7 @@
+# Models & cache
+models/
+models_cache/
+**/models--*
 
 # Virtual environments
 ai_env/
