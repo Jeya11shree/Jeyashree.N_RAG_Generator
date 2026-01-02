@@ -21,3 +21,9 @@ __pycache__/
 # OS files
 Thumbs.db
 .DS_Store
+
+# Generated folders
+db/
+models/
+models_cache/
+logs/
