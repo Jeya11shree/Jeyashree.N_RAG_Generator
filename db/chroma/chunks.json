@@ -1,0 +1,20 @@
+[
+  {
+    "id": "recipe_tea_chunk_0",
+    "text": "Making a cup of tea is a simple process, with the basic recipe involving hot water and tea leaves or a teabag. You can customize it with milk, sugar, or spices. Classic Hot Tea This is the most common method for black tea using a teabag. Ingredients: 1 teabag (black tea is common) 1 cup fresh water Milk (optional, to taste) Sugar or sweetener (optional, to taste) Instructions: Boil the water: Fill a kettle with fresh water and bring it to a rolling boil. Prepare the cup: Place the teabag in your favorite mug. Pour and steep: Pour the boiling water into the mug over the teabag. Allow the tea to brew for 3 to 5 minutes. Do not stir or squeeze the teabag during this time. Remove the teabag: Take out the teabag and discard it. Customize: Add a splash of milk and/or sugar if desired, stirring to blend evenly. Enjoy: Your tea is ready to drink! Masala Chai (Spiced Indian Tea) For a richer, spiced flavor, try masala chai, which involves simmering spices, tea leaves, milk, and water together. Ingredients (for one serving): ¾ cup water ¼ cup milk (full-fat recommended) 2 teaspoons black tea leaves Sweetener of",
+    "source": "recipe_tea.txt",
+    "metadata": {
+      "file_type": "txt",
+      "chunk_index": 0
+    }
+  },
+  {
+    "id": "recipe_tea_chunk_1",
+    "text": "evenly. Enjoy: Your tea is ready to drink! Masala Chai (Spiced Indian Tea) For a richer, spiced flavor, try masala chai, which involves simmering spices, tea leaves, milk, and water together. Ingredients (for one serving): ¾ cup water ¼ cup milk (full-fat recommended) 2 teaspoons black tea leaves Sweetener of choice (to taste) Optional spices: crushed ginger, cardamom pods, cinnamon stick, or peppercorns Instructions: Heat water and spices: In a small saucepan, bring the water to a boil. Add any optional spices (like crushed ginger or cardamom) and let them simmer for a few minutes to steep. Add tea leaves: Add the black tea leaves and bring the mixture to a full boil, stirring occasionally. Add milk and boil again: Pour in the milk. The boiling will temporarily stop. Bring it back to a full boil and let it boil for about a minute, or until it reaches your desired color and strength. Strain and serve: Strain the hot chai into a mug using a tea strainer. Add your sweetener of choice and stir to dissolve.",
+    "source": "recipe_tea.txt",
+    "metadata": {
+      "file_type": "txt",
+      "chunk_index": 1
+    }
+  }
+]

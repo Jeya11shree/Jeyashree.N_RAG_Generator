@@ -1,4 +1,0 @@
-id,created_at,subject,category,description
-1,2025-12-01T09:12:00Z,User cannot sign up,signup,User reports "Email already exists" when creating account
-2,2025-12-02T14:22:00Z,Verification link expired,verification,User tried verification after 48 hours and got expired token
-3,2025-12-05T11:05:00Z,Password rule unclear,signup,User reports password rules are not visible on mobile

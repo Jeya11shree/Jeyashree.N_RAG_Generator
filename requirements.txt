@@ -1,28 +1,12 @@
-# Minimal requirements (update as needed)
-pytest
-scikit-learn
-pdfminer.six
-Pillow
-pytesseract
-chromadb
+﻿streamlit==1.32.2
+python-dotenv==1.0.1
+Pillow==10.2.0
+PyPDF2==3.0.1
+python-docx==1.1.0
+pytesseract==0.3.10
+opencv-python==4.9.0.80
+sentence-transformers==2.2.2
 faiss-cpu
-openai
-python-docx
-docx2txt
-joblib
-chromadb
-#faiss-cpu
-#openai
-
-# Add any additional dependencies below
-transformers
-streamlit
-pytesseract
-pillow
-pymupdf
-# Python dependencies for OCR
-pytesseract>=0.3.10
-Pillow>=9.0.0
-pdf2image>=1.16.0
-opencv-python-headless>=4.5.5.64  # optional but recommended for preprocessing
-numpy>=1.21.0
+groq==1.0.0
+tqdm==4.66.2
+transformers==4.38.2

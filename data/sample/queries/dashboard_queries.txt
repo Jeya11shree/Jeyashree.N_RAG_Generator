@@ -1,0 +1,5 @@
+Create use cases for dashboard creation and editing.
+Generate test cases for chart management, including error/boundary cases.
+List negative test cases for dashboard data integration.
+Suggest test cases to validate role-based access control for dashboards.
+Generate test cases for exporting dashboards as PDF and CSV.

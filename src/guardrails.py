@@ -1,39 +1,42 @@
-"""Simple guardrails: sanitization, evidence checks, dedupe helpers."""
-
 import re
-
+from statistics import mean
+from typing import List
 
 def sanitize(text: str) -> str:
-    """Strip obvious prompt-injection markers and long instruction headers.
-
-    This is intentionally conservative: it removes lines that look like system
-    messages or assistant instructions embedded inside documents.
-    """
-    if not text:
-        return text
-    lines = []
-    for L in text.splitlines():
-        if re.match(r"^(system:|assistant:|user:|do not follow|ignore).*", L.strip().lower()):
-            continue
-        lines.append(L)
-    return "\n".join(lines)
-
-
-def meets_evidence_threshold(items, threshold: float = 0.2) -> bool:
-    """Return True if average evidence score meets the threshold."""
-    if not items:
-        return False
-    avg = sum(i.get("score", 0.0) for i in items) / len(items)
-    return avg >= threshold
-
-
-def dedupe_chunks(chunks):
-    seen = set()
+    if not text: return text
+    dangerous_patterns = [
+        r"^system:",
+        r"^assistant:",
+        r"^user:",
+        r"^ignore",
+        r"^do not follow",
+        r"^disregard",
+        r"^forget previous",
+        r"^new instructions",
+    ]
     out = []
+    for line in text.splitlines():
+        line_lower = line.strip().lower()
+        if not any(re.match(pat, line_lower) for pat in dangerous_patterns):
+            out.append(line)
+    return "\n".join(out)
+
+def meets_evidence_threshold(items: List[dict], threshold: float = 0.2) -> bool:
+    if not items: 
+        return False
+    scores = [i.get("score", 0.0) for i in items]
+    avg_score = mean(scores)
+    return avg_score >= threshold
+
+def dedupe_chunks(chunks: List[dict]) -> List[dict]:
+    seen = set(); unique = []
     for c in chunks:
-        h = hash(c.get("text", ""))
-        if h in seen:
-            continue
-        seen.add(h)
-        out.append(c)
-    return out
+        text = c.get("text", "")
+        key = hash(text)
+        if key not in seen:
+            seen.add(key)
+            unique.append(c)
+    return unique
+
+def filter_low_quality_chunks(chunks: List[dict], min_length: int = 50) -> List[dict]:
+    return [c for c in chunks if len(c.get("text", "")) >= min_length]

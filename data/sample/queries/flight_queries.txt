@@ -1,0 +1,19 @@
+Create use cases for flight filter application.
+Generate test cases for combining multiple filters.
+List negative test cases for the clear-all filter function.
+Generate boundary test cases for price range filter.
+Create use cases for filtering by airlines.
+Generate test cases to verify filter persistence after back navigation.
+Produce use cases for filtering by departure and arrival times.
+Generate test cases for updating filters without page reload.
+Create test cases for applying conflicting filter combinations.
+Generate negative test cases for filters resulting in zero results.
+List boundary test cases for the minimum and maximum duration filter.
+Create test cases for filters when airline data is missing.
+
+
+Generate test cases for the 'Twin beds' and 'Double bed' filters in hotel search.
+Generate test cases for property accessibility filters.
+Generate test cases for 'Direct only' filter in flight search.
+Generate test cases for selecting multiple airlines in the flight filter.
+Generate boundary test cases for the 'Duration' slider in flight results filter.
